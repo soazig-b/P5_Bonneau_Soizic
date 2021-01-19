@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Peluches cousues main - Oripeluches by Orinoco</title>
+    <meta name="description" content="Vente en ligne de peluches cousues main de qualité Française."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <meta name="robots" content="all" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+     <script src="https://kit.fontawesome.com/697fd07b34.js" crossorigin="anonymous"></script>
+     <script type="text/javascript" src="teddy.js"></script>
+     <script type="text/javascript" src="app.js"></script>
+     <script type="text/javascript" src="server.js"></script>
+  </head>
+  <body>
+    <div class="page-container">
+      <header>
+        <div class="header">
+          <div class="img_logo">
+            <img class="logo" src="images/logo_orinoco.png" alt="Logo Orinoco"/>
+          </div>
+          <nav>
+            <div class="header-lien">
+              <ul class="header-navigation">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="fas fa-home"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="basket.html"><i class="fas fa-shopping-bag"></i> </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="recapitulatif">
+          <h2>Récapitulatif de votre commande</h2>
+          <p>Veuillez vérifier votre commande ci-dessous avant de valider le paiement.</p>
+          <div id="panier-recap">
+            <p id="panierVide">Votre panier est vide</p>
+          </div>
+        </section>
+        <section class="formulaire_commande">
+          <h2>Passer la commande de votre(vos) peluche(s)</h2>
+          <div class="cadre">
+            <form method="post" name="formContact" id="form_1">
+              <div class="form-group">
+                <label for="nom">Nom de famille</label>
+                <input type="text" id="nom" name="nom" class="form-control" required autofocus placeholder="Renseignez votre nom de famille"/>
+              </div>
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" class="form-control" required placeholder="Renseignez votre prénom"/>
+              </div>
+              <div class="form-group">
+                <label for="email">Adresse email</label>
+                <input type="email" id="email" name="email" class="form-control" required placeholder="Entrez une adresse mail valide"/>
+              </div>
+              <div class="form-group">
+                <label for="adresse">Adresse postale et adresse de facturation</label>
+                <input type="text" id="adresse" name="adresse" class="form-control" required placeholder="Ex: 32, avenue Georges Brassens"/>
+              </div>
+
+              <div class="form-group">
+                <label for="ville"> Ville</label>
+                <input type="text" id="ville" name="ville" class="form-control" required placeholder="Ex: Paris"/>
+              </div>
+              <div class="form-group">
+                <label>Choix du moyen de paiement</label>
+                <div id="carte">
+                  <input type="radio" class="paiement" name="identifieur" value="Visa" checked/>
+                  <i class="fab fa-cc-visa"></i>
+                  <input type="radio" class="paiement" name="identifieur" value="Mastercard"/>
+                  <i class="fab fa-cc-mastercard"></i>
+                  <input type="radio" class="paiement" name="identifieur" value="Paypal"/>
+                  <i class="fab fa-cc-paypal"></i>
+                </div>
+              </div>
+              <button id="commander" type="submit" name="commander">
+                Commander
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+
+        <footer>
+            <div class="footer">
+                <div class="a-propos">
+                    <h2 class="title-a-propos"><strong>Oripeluches By Orinoco</strong>,<br>marque française de peluches de qualité, pour petits et grands.</h2> 
+                </div>
+                <div class="contact">
+                    <a class="title-contact">Contactez-nous</a>
+                </div>
+                <ul class="footer_navigation">
+                    <li class="FB">
+                        <a><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="twitter">
+                        <a><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li class="insta">
+                        <a><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li class="pinterest">
+                        <a><i class="fab fa-pinterest"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
