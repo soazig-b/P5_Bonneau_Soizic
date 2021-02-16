@@ -1,10 +1,3 @@
-/*
-{ "contact":
-    {"firstName":"toto", "lastName":"toto", address:"toto", city:"toto", "email":"toto@toto.fr"},
-  "produits":["5be9c8541c9d440000665243"]
-}
-*/
-
 /*Récupération des données du serveur*/
 function loadDoc() {
   var items;
@@ -27,7 +20,6 @@ console.log (ours);
 let conteneurproduit = document.getElementById('conteneurproduit');
 
 /* boucle forEach pour afficher chaque article à la suite sous forme de liste*/
-
 ours.forEach(element => {
   
     let htmlOurs = document.createElement("a");
@@ -48,9 +40,7 @@ ours.forEach(element => {
     let p = document.createElement("p");
     htmlOurs.appendChild(p);
     p.classList.add("peluche-price");
-    p.textContent = element.price + '€';
-    /*<p class="peluche-price">${element.price / 100}€</p>*/
-   
+    p.textContent = element.price / 100 + "€";
     
   });
 
