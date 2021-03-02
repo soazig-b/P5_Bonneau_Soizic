@@ -26,7 +26,7 @@ import {localStorage} from "/js/modules/localStorage.js";*/
             if (this.status === 201) { 
                 localStorage.setItem( "order", this.responseText);
                 console.log(JSON.parse(this.responseText));
-                //document.location.href = "command-confirm.html";
+                document.location.href = "command-confirm.html";
             } else {
                 console.log(request); 
             }

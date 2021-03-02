@@ -3,8 +3,7 @@ import {button} from "/js/modules/button.js";
 import {restApi} from "/js/modules/restApi.js";
 import {localStorage} from "/js/modules/localStorage.js";*/
 
-//let orderId;
-let order = localStorage.getItem("order");
+let order = JSON.parse(localStorage.getItem("order"));
 
 let total = localStorage.getItem("total"); 
 
@@ -16,7 +15,7 @@ idConfirm.appendChild(idConf);
 idConfirm.classList.add("numero-id");
 idConfirm.textContent = 'numéro de commande : ' + order.orderId;
 
-console.log(order.contact);
+console.log(order);
 
 let cost = document.getElementById("costOrder");
 

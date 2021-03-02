@@ -272,11 +272,10 @@ form {
   color: #2d848b;
   
 }
-input:invalid {
-  background-color: pink;
-}
+
 input:focus:invalid {
-  outline: none;
+  outline: solid;
+  
 }
 .peluche-panier {
   display: flex;
