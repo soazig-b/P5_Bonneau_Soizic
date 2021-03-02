@@ -17,10 +17,10 @@ a:hover {
   display: flex;
   justify-content: space-between;
   padding-left: 20px;
-  padding-right: 20px;
   margin-top: 15px;
   border-bottom: solid 2px lightgray;
   color: black;
+ 
 }
 .header-navigation {
   display: flex;
@@ -239,10 +239,6 @@ main {
   justify-content: center;
 }
 
-#recapitulatif {
-  margin-bottom: 20px;
-}
-
 .fas:hover {
   cursor: pointer;
 }
@@ -276,15 +272,19 @@ form {
   color: #2d848b;
   
 }
-
+input:invalid {
+  background-color: pink;
+}
 input:focus:invalid {
   outline: none;
 }
 .peluche-panier {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    margin-left: 50px;
+    margin-right: 80px;
 }
 .peluche-img-panier {
   width: 180px;
@@ -300,18 +300,48 @@ input:focus:invalid {
   font-family: 'Poppins', sans-serif;
   padding: 7px;
 }
-.bouton-supprimer:hover {
+.bouton-continu-shopping {
+  border-radius: 50px;
+  font-size: 0.7em;
+  font-weight: 400;
+  border: gray;
+  color: white;
+  background:  grey;
+  font-family: 'Poppins', sans-serif;
+  padding: 7px;
+  margin: 20px;
+  font-family: 'Finger Paint', cursive;
+  
+}
+.bouton-supprimer:hover, .bouton-continu-shopping:hover {
   cursor: pointer;
   color:white;
   background: #2d848b;
 }
-
+#continu-shopping {
+  display: flex;
+  justify-content: center;
+  
+}
+.continu-shop {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  color: gray;
+  font-family: 'Finger Paint', cursive;
+}
 #panier-recap, #confirmation-recap {
   margin: auto;
   text-align: center;
   padding: 10px;
   background-color: lightgray;
-  width: 100%;
+  width: auto;
+}
+.total {
+  text-align: right;
+  margin-right: 20px;
+  font-size: 1em;
+  color: #191970;
 }
 .panierVide {
   display: flex;
@@ -322,7 +352,7 @@ input:focus:invalid {
   font-size: 1.4em;
 }
 
-.bouton-retour-accueil {
+.bouton-retour-accueil, .bouton-return-accueil {
   max-width: 275px;
   margin-top: 30px;
   padding: 20px;
@@ -331,13 +361,22 @@ input:focus:invalid {
   border: 1px #2d848b;
   color: white;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.55em;
+  font-size: 0.7em;
 }
-.bouton-retour-accueil:hover {
+.bouton-retour-accueil:hover, .bouton-return-accueil:hover {
   opacity: 0.8;
 }
+#costOrder, #idOrder {
+  color: darkslategray;
+}
+.retour-acc {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-.bouton-order {
+
+#commander {
   margin: 20px;
   border-radius: 50px;
   font-size: 0.9em;
@@ -348,41 +387,24 @@ input:focus:invalid {
   font-family: 'Poppins', sans-serif;
   padding: 15px;
 }
-.bouton-order:hover {
+#commander:hover {
   cursor: pointer;
   color:white;
   background: #2d848b;
 }
-
-/*#colonneTotal, #sommeTotal, #colonneConfirmTotal, #sommeConfirmTotal {
-  border: 2px solid;
-  background-color: #f5e6c6;
-  font-size: 2rem;
+.validation-mail {
+  color: #2d848b;
+  font-weight: bold;
+  font-size: 1em;
 }
-
-.photo_article {
-  width: 10rem;
-}
-
-.photo_article_acheté {
-  width: 7rem;
-}
-
-th, td {
-  font-size: 1.4rem;
-}
-
-.confirmation h2 {
+.commande {
   text-align: center;
+  margin-top: 30px;
 }
-
-.textConfirm {
-  font-size: 1.3rem;
+.signature{
+  font-family: 'Finger Paint', cursive;
+  color: #2d848b;
 }
-
-#orderId {
-  color: #0bb30b;
-}*/
 
 @media (max-width: 1024px) {
     body {
@@ -396,8 +418,8 @@ th, td {
     .header img {
       width: 8em;
     }
-  
-    .banniere-presentation h1 img {
+
+      .banniere-presentation h1 img {
       width: 80%;
     }
     .orinounours {
@@ -424,14 +446,19 @@ th, td {
     #listeProduit h2 {
       font-size: 1.2em;
     }
+    #panier-recap {
+      padding-right: 50px;
+      width: auto;
+    }
   }
   /*768*/
   @media (max-width: 768px) {
     .header {
-        display: flex;
-        align-items: center;
-        padding-left: 20px;
-        padding-right: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .nav {
+      margin-right: 20px;
     }
     .orinounours {
         font-size: 1.1em;
@@ -484,10 +511,18 @@ th, td {
       margin-bottom: 1rem;
       width: 50%;
     }
+    .peluche-panier {
+      margin-left: 0px; 
+      margin-right: 75px;
+    }
+    .total {
+      text-align: center;
+    }
     #panier-recap,
     #confirmation-recap,
     .cadre {
-      width: 97%;
+      width: 100%;
+      padding-right: 0;
     }
   
     .form-group {
@@ -495,29 +530,6 @@ th, td {
       margin-right: 1rem;
     }
   
-    .textConfirm {
-      font-size: 1.1rem;
-    }
-  
-    th {
-      display: none;
-    }
-    #colonneTotal,
-    #colonneConfirmTotal {
-      display: block;
-    }
-    #colonneTotal,
-    #sommeTotal,
-    #colonneConfirmTotal,
-    #sommeConfirmTotal {
-      font-size: 1.4rem;
-    }
-    tr {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-top: 1px solid;
-    }
   }
   @media (max-width: 425px){
     .header {
@@ -539,11 +551,42 @@ th, td {
         margin-right: 10px;
         margin-left: 10px;
     }
+    .peluche-produit {
+      padding : 0;
+    }
+    .peluche-img-produit {
+      max-width: 300px;
+      height: 200px;
+    }
     .title-a-propos {
         font-size: 0.8em;
         margin-right: 10px;
         margin-left: 10px;
     }
+    #panier-recap {
+      padding-bottom: 30px;
+      padding-right: 0px;
+      padding-left: 0;
+      width: 100%;
+    }
+    .peluche-panier {
+      display: inherit;
+      padding-top: 20px;
+      margin-left: 0px; 
+      margin-right: 0px;
+    }
+    
+  form {
+      width: 100%;
+      margin: 0px;
+    }
+    .formulaire_commande >h2 {
+      margin: 5px;
+    }
+    input:required {
+      border: 1px dashed red;
+    }
+   
     .title-contact {
         font-size: 0.8em;
         padding: 10px;
@@ -556,6 +599,7 @@ th, td {
     .header {
         display: flex;
         flex-direction: column;
+       
     }
   }
 /*aniamtion ours*/

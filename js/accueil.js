@@ -1,4 +1,10 @@
-/*Récupération des données du serveur*/
+/*import {panier} from "/js/modules/panier.js";
+import {button} from "/js/modules/button.js";
+import {restApi} from "/js/modules/restApi.js";
+import {localStorage} from "/js/modules/localStorage.js";*/
+
+
+//Récupération des données du serveur
 function loadDoc() {
   var items;
   var xhttp = new XMLHttpRequest();
@@ -11,15 +17,14 @@ function loadDoc() {
   xhttp.send();
   return items;
 }
-/*affichage de la liste des articles via requête JSON*/
+//affichage de la liste des articles via requête JSON mettre dans un module
 let ours = loadDoc();
 ours = JSON.parse(ours);
-console.log (ours);
 
-/* affichage dans le HTML*/
+// affichage dans le HTML
 let conteneurproduit = document.getElementById('conteneurproduit');
 
-/* boucle forEach pour afficher chaque article à la suite sous forme de liste*/
+// boucle forEach pour afficher chaque article à la suite sous forme de liste
 ours.forEach(element => {
   
     let htmlOurs = document.createElement("a");
@@ -41,14 +46,6 @@ ours.forEach(element => {
     htmlOurs.appendChild(p);
     p.classList.add("peluche-price");
     p.textContent = element.price / 100 + "€";
-    
+
   });
-
-
-
-
-
-
-
-
 

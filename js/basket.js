@@ -1,33 +1,41 @@
 import {panier} from "/js/modules/panier.js";
+/*import {button} from "/js/modules/button.js";
+import {restApi} from "/js/modules/restApi.js";
+import {localStorage} from "/js/modules/localStorage.js";*/
 
 /*envoi sur page panier après selection de l'ours sur page produit*/
-function addOurs(){ 
-    var result;
-    const url = new URL ("http://localhost:3000/api/teddies/order");
+  function addOurs() {  
+    var url = "http://localhost:3000/api/teddies/order";
     var jsonInputString = JSON.stringify({ contact:
         {
-            firstName: document.getElementById("firstname").value,
-            lastName: document.getElementById("lastname").value,
-            address: document.getElementById("adress").value,
-            city: document.getElementById("city").value,
+            firstName: document.getElementById("nom").value,
+            lastName: document.getElementById("prenom").value,
+            address: document.getElementById("adresse").value,
+            city: document.getElementById("ville").value,
             email: document.getElementById("email").value,
         },
-        products: tabId
+        products: JSON.parse(localStorage.getItem("panier"))
     });
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
+    let request = new XMLHttpRequest();
+    request.open ("POST", url);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(jsonInputString);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+            if (this.status === 201) { 
+                localStorage.setItem( "order", this.responseText);
+                console.log(JSON.parse(this.responseText));
+                //document.location.href = "command-confirm.html";
+            } else {
+                console.log(request); 
+            }
         }
     };
-    result = xhr.send(jsonInputString);
-    return result; 
 }
 
 function getOurs(id) {
+   
     var items;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -35,19 +43,14 @@ function getOurs(id) {
        items = JSON.parse(this.responseText);
       }
     };
-    xhttp.open("GET", "http://localhost:3000/api/teddies/".concat(id), false);
+    xhttp.open("GET", "http://localhost:3000/api/teddies/" + id, false);
     xhttp.send();
     return items;
   }
 
-// tri des infos du panier
-
-
-//le formulaire ne doit pas s'afficher si le panier est vide
-
-
+// tri des infos du panier :
 // 1- si le panier est plein :
-if(localStorage.getItem("panier")) 
+if(localStorage.getItem("panier") != null && localStorage.getItem("panier") != "[]") 
 {
     // récupération des items du localStorage
     let tabId = localStorage.getItem("panier");
@@ -58,17 +61,16 @@ if(localStorage.getItem("panier"))
     basketFull.classList.add("verif-commande");
     basketFull.textContent = "Veuillez vérifier votre commande ci-dessus avant de valider le paiement.";
   
-  // retransformer les strings en liste
-  
-    let recapOurs = tabId;
-    recapOurs = JSON.parse(recapOurs);
+    // retransformer les strings en liste
+    let recapOurs = JSON.parse(tabId);
+
+    // total du panier
+    var total = 0;
 
     // boucle forEach pour récupérer les items placés dans le panier
-    //var total = 0;
-    // total = total + element.price puis après le boucle ajouter ce total au html
     recapOurs.forEach(function(element, index, array) {
   
-        let ours = getOurs(element.id)
+        let ours = getOurs(element)
 
         let detailBasket = document.getElementById('panier-recap');
 
@@ -103,19 +105,38 @@ if(localStorage.getItem("panier"))
         btnCancel.appendChild(tCancel);                           
         productBasket.appendChild(btnCancel);
         
-        
         btnCancel.addEventListener("click", function() {
             panier.deleteOneItem(array, index);
             document.location.reload();
         });
-    });
+ 
+    // somme totale du panier
+    total = total + ours.price / 100;
+});
 
+    // bouton continuer ses achats
+    let shop = document.getElementById("continu-shopping");
+
+    let continuSHop = document.createElement("p");
+    shop.appendChild(continuSHop);
+    continuSHop.classList.add("continu-shop");
+    continuSHop.textContent = "Continuer vos achats";
+
+    let btnReturnSHop = document.createElement("button");
+    btnReturnSHop.classList.add("bouton-continu-shopping");  
+    let continu = document.createTextNode("Shopping");       
+    btnReturnSHop.appendChild(continu);                           
+    continuSHop.appendChild(btnReturnSHop);
+
+    // renvoi à la page html accueil
+    btnReturnSHop.addEventListener("click", function() {
+            document.location.href="index.html";
+      });  
 }
 
 // 2- si le panier est vide 
 else 
 {
-    
     let panierRecap = document.getElementById("panier-recap");
 
     let basketEmpty = document.createElement("p");
@@ -131,34 +152,36 @@ else
     basketEmpty.appendChild(btnReturn);
 
     // renvoi à la page html accueil
-    function RedirectionJavascript(){
-        document.location.href="index.html";
-      }
       btnReturn.addEventListener("click", function() {
             var btnReturn = document.location.href="index.html";
-      });  
+      });
       
-      document.getElementById("formulaire_commande").style.display = "none";
-      
+    //le formulaire ne s'affiche pas
+    document.getElementById("formulaire_commande").style.display = "none";
+    document.getElementById("total").style.display = "none";
 }
 
-
- // btn commander add envent listener {
-// attention au rafraichissement de page (en html) : input submit et balise form
- // recupe des variables et créer un objet avec ces infos pour envoyer à l'api
-// enregistré ces infos en local storage 
-// faire redirection sur bonne page pour afficher num de commande
+// Somme total du panier qui s'affiche en-dessous des articles du panier
+let totalOrder = document.getElementById('total-panier');
+ 
+let totalBasket = document.createElement("h3");
+totalOrder.appendChild(totalBasket);
+totalBasket.classList.add("total");
+totalBasket.textContent = "Total de votre panier : " + '' + total + "€";
+ 
+// btn commander 
 let orderBouton = document.getElementById("commander");
+    
+orderBouton.addEventListener("click", function(e){ 
+    e.preventDefault();
+    let orderId = addOurs();
+    console.log(total);
+    
+    // On stock dans le localStorage notre id de commande
+	localStorage.setItem("order", orderId);
+    
+    localStorage.setItem("total", total);
+    // On envoi l'utilisateur vers la page de confirmation de commande
+    //document.location.href = "command-confirm.html"; 
+});
 
-let order = document.createElement("button");
-order.classList.add("bouton-order");      
-let text = document.createTextNode("Commander");       
-order.appendChild(text);                           
-orderBouton.appendChild(order);
-
-//let ours = addOurs();
-//console.log('Ours : ' + ours);}
-
-// orga du code, par exemple : faire un fichier que pour le localStorage
-//module : restApi (toutes les fonctions pour requêter sur l'api)
-//module : fonction reload etc...

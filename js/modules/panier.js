@@ -5,9 +5,13 @@ const panier = {
         array = JSON.stringify(array);
         localStorage.setItem("panier", array);
     },
-    addOneItem : function(){
+    addOneItem : function(array, index){
+        array.
 
+        localStorage.setItem("panier", array);
     },
+
+    
 
 
 
@@ -15,4 +19,7 @@ const panier = {
 
 
 }
-export {panier};
+
+
+ export {panier};
+
