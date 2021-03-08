@@ -1,4 +1,4 @@
-const panier = {
+/*const panier = {
 
     deleteOneItem : function(array, index){
         array.splice(index, 1);
@@ -21,5 +21,5 @@ const panier = {
 }
 
 
- export {panier};
+ export {panier};*/
 

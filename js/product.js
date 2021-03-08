@@ -1,32 +1,20 @@
-/*import {panier} from "/js/modules/panier.js";
-import {button} from "/js/modules/button.js";
 import {restApi} from "/js/modules/restApi.js";
-import {localStorage} from "/js/modules/localStorage.js";*/
-
-
-
+import {localStor} from "/js/modules/localStorage.js";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-
-//envoi sur page produit après selection de l'ours sur page index
-function getOurs() {
-  var items;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     items = this.responseText;
-    }
-  };
-  xhttp.open("GET", "http://localhost:3000/api/teddies/".concat(id), false);
-  xhttp.send();
-  return items;
+function testUni() {
+  console.log("====== test de la requête GET getOurs ======");
+  console.log(ours);
 }
 
+
 //affichage de l'article via requête JSON
-let ours = getOurs();
+let ours = restApi.getOurs(id);
 ours = JSON.parse(ours);
+
+testUni
 
 // création du HTML 
 let detailOption = document.getElementById('detail-produit');
@@ -74,17 +62,5 @@ productOurs.appendChild(btn);
 
 // envoyer au localstorage 
 btn.addEventListener("click", async function() {
-  if(localStorage.getItem("panier")) {
-    let tabId = localStorage.getItem("panier");
-    tabId = JSON.parse(tabId);
-    tabId.push(id) 
-    tabId = JSON.stringify(tabId);
-    localStorage.setItem("panier", tabId);
-    }
-    else {
-      let tabId = [id];
-      tabId = JSON.stringify(tabId);
-      localStorage.setItem("panier", tabId);
-    }
-      document.location.href="basket.html";
-  });
+ localStor.panier(id)
+});

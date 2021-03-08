@@ -1,26 +1,26 @@
-/*import {panier} from "/js/modules/panier.js";
-import {button} from "/js/modules/button.js";
 import {restApi} from "/js/modules/restApi.js";
-import {localStorage} from "/js/modules/localStorage.js";*/
+//mettre tous les tests ici et en faire une fonction Unitest par page
 
-
-//Récupération des données du serveur
-function loadDoc() {
-  var items;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     items = this.responseText;
-    }
-  };
-  xhttp.open("GET", "http://localhost:3000/api/teddies/", false);
-  xhttp.send();
-  return items;
+function testUni() {
+  console.log("======== loadDoc ======"); //séparer les tests
+  console.log("====== variable ours (détail de l'article) ======");
+  if(ours)
+    console.log(ours);
+  else
+    console.error('Aucun ours');
+  /*console.log("====== vérification du prix de chaque ours ======");
+  console.log(element.price);
+  console.log("====== getOurs ======");
+  console.log(getOurs());
+  console.log("====== requête POST ======");
+  console.log(addOurs());*/
 }
-//affichage de la liste des articles via requête JSON mettre dans un module
-let ours = loadDoc();
+
+//affichage de la liste des articles via une requête JSON 
+let ours = restApi.loadDoc();
 ours = JSON.parse(ours);
 
+testUni()
 // affichage dans le HTML
 let conteneurproduit = document.getElementById('conteneurproduit');
 

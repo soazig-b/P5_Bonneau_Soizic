@@ -71,6 +71,7 @@ a:hover {
     margin: 0;
     text-align: center;
     font-size: 0.8rem;
+    margin-top: 20px;
 }
 .a-propos {
     text-align: center;
@@ -288,6 +289,7 @@ input:focus:invalid {
 .peluche-img-panier {
   width: 180px;
   margin-left: 20px;
+  border-radius: 40px;
 }
 .bouton-supprimer {
   border-radius: 50px;
@@ -408,6 +410,7 @@ input:focus:invalid {
 @media (max-width: 1024px) {
     body {
       font-size: 1.1em;
+      text-align: center;
     }
   
     main .produit_contenant .produit_element {
@@ -562,6 +565,16 @@ input:focus:invalid {
         margin-right: 10px;
         margin-left: 10px;
     }
+    .orinounours-article >h2 {
+      text-align: center;
+    }
+    #detail-produit {
+      margin: 0;
+      border-radius: 0;
+    }
+    .peluche-img-article {
+      width: 250px;
+    }
     #panier-recap {
       padding-bottom: 30px;
       padding-right: 0px;
@@ -582,10 +595,7 @@ input:focus:invalid {
     .formulaire_commande >h2 {
       margin: 5px;
     }
-    input:required {
-      border: 1px dashed red;
-    }
-   
+    
     .title-contact {
         font-size: 0.8em;
         padding: 10px;
@@ -598,7 +608,12 @@ input:focus:invalid {
     .header {
         display: flex;
         flex-direction: column;
-       
+    }
+    .total {
+      margin-left: 20px;
+    }
+    #formulaire_commande h2 {
+      margin: 5px;
     }
   }
 /*aniamtion ours*/
