@@ -1,6 +1,27 @@
 import { button } from "/js/modules/button.js";
 import {restApi} from "/js/modules/restApi.js";
-//import {localStor} from "/js/modules/localStor.js";
+
+function testUni() {
+    
+    console.log("====== test du localStorage ======");
+    console.log("====== récupération de l'ID de l'ours ======");
+        if(localStorage.getItem("panier"))
+            console.log(localStorage.getItem("panier"));
+        else
+            console.error('erreur');
+    
+    console.log("====== vérification du prix total du panier ======");
+        if(total)
+            console.log(total);
+        else
+            console.error('erreur');
+    
+    console.log("======== vérification envoi inputs formulaire =======");
+        if(button.orderBtn(total))
+            console.log(button.orderBtn(total));
+        else
+            console.error('erreur formulaire pas correctement rempli');
+}
 
 // tri des infos du panier :
 // 1- si le panier est plein :
@@ -106,9 +127,9 @@ else
     basketEmpty.appendChild(btnReturn);
 
     // renvoi à la page html accueil
-      btnReturn.addEventListener("click", function() {
+    btnReturn.addEventListener("click", function() {
         button.returnHome()
-      });
+    });
       
     //le formulaire ne s'affiche pas
     document.getElementById("formulaire_commande").style.display = "none";
@@ -122,11 +143,13 @@ let totalBasket = document.createElement("h3");
 totalOrder.appendChild(totalBasket);
 totalBasket.classList.add("total");
 totalBasket.textContent = "Total de votre panier : " + '' + total + "€";
- 
-// btn commander 
+
+
+// bouton commander 
 let orderBouton = document.getElementById("commander");    
 
 orderBouton.addEventListener("click", function(e){
     button.orderBtn(total);
 });
 
+testUni(); // initialisation de la fonction de test

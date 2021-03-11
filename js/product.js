@@ -1,20 +1,22 @@
 import {restApi} from "/js/modules/restApi.js";
 import {localStor} from "/js/modules/localStorage.js";
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-
 function testUni() {
-  console.log("====== test de la requête GET getOurs ======");
-  console.log(ours);
+  console.log("====== test de la requête GET getOurs() ======");
+  if(restApi.getOurs(id))
+    console.log(restApi.getOurs(id));
+  else
+    console.error('erreur requête GET getOurs()');
 }
 
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
 //affichage de l'article via requête JSON
 let ours = restApi.getOurs(id);
 ours = JSON.parse(ours);
 
-testUni
+testUni(); // initialisation de la fonction de test
 
 // création du HTML 
 let detailOption = document.getElementById('detail-produit');
@@ -60,7 +62,7 @@ let t = document.createTextNode("Ajouter au panier");
 btn.appendChild(t);                           
 productOurs.appendChild(btn);
 
-// envoyer au localstorage 
+// envoi au localstorage 
 btn.addEventListener("click", async function() {
  localStor.panier(id)
 });

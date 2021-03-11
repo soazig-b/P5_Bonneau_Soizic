@@ -1,26 +1,19 @@
 import {restApi} from "/js/modules/restApi.js";
-//mettre tous les tests ici et en faire une fonction Unitest par page
 
 function testUni() {
-  console.log("======== loadDoc ======"); //séparer les tests
-  console.log("====== variable ours (détail de l'article) ======");
-  if(ours)
-    console.log(ours);
-  else
-    console.error('Aucun ours');
-  /*console.log("====== vérification du prix de chaque ours ======");
-  console.log(element.price);
-  console.log("====== getOurs ======");
-  console.log(getOurs());
-  console.log("====== requête POST ======");
-  console.log(addOurs());*/
+  console.log("======== test de la requête GET loadDoc() ======");
+    if(restApi.loadDoc())
+      console.log(restApi.loadDoc());
+    else
+      console.error('erreur requête GET loadDoc()');
 }
 
 //affichage de la liste des articles via une requête JSON 
 let ours = restApi.loadDoc();
 ours = JSON.parse(ours);
 
-testUni()
+testUni(); // initialisation de la fonction de test
+
 // affichage dans le HTML
 let conteneurproduit = document.getElementById('conteneurproduit');
 
