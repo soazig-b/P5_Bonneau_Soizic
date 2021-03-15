@@ -14,7 +14,7 @@ const id = params.get("id");
 
 //affichage de l'article via requête JSON
 let ours = restApi.getOurs(id);
-ours = JSON.parse(ours);
+//ours = JSON.parse(ours);
 
 testUni(); // initialisation de la fonction de test
 

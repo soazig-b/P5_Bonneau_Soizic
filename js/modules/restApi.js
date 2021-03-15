@@ -7,24 +7,17 @@ const restApi = {
      *
      * @return {string} string ours data.
      */
-    loadDoc : function(){
-        //Récupération des données du serveur via une requête GET
-        var items;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            items = this.responseText;
-        }
-        };
-        xhttp.open("GET", "http://localhost:3000/api/teddies/", false);
-        xhttp.send();
-        return items;
-    },
 
-    getOurs : function(id, product = true){
-        if (typeof id !== "string") {
-            throw "restApi.getOurs : Parameter should be a string"
-        }
+        loadDoc : async function() {
+            var data;
+            await fetch("http://localhost:3000/api/teddies/")
+            .then(response => response.json())
+            .then(response => data = JSON.stringify(response));
+            return data
+        
+    },
+    
+    getOurs : function(id, product) {
         var items;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {

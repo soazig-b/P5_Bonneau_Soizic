@@ -44,7 +44,7 @@ btnReturn.addEventListener("click", function() {
   button.returnHome();         
   });
 
-localStorage.clear(); // On clean le localStorage pour les futurs commandes  
+localStorage.clear(); // On clean le localStorage pour les futures commandes  
 
 testUni(); // initialisation de la fonction de test
 

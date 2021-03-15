@@ -1,18 +1,16 @@
 import {restApi} from "/js/modules/restApi.js";
 
 function testUni() {
-  console.log("======== test de la requête GET loadDoc() ======");
+  console.log("======== test de la promise GET loadDoc() ======");
     if(restApi.loadDoc())
       console.log(restApi.loadDoc());
     else
       console.error('erreur requête GET loadDoc()');
 }
 
-//affichage de la liste des articles via une requête JSON 
-let ours = restApi.loadDoc();
-ours = JSON.parse(ours);
-
-testUni(); // initialisation de la fonction de test
+// récupération de la promise GET
+restApi.loadDoc().then(function(data) {
+  let ours = JSON.parse(data)
 
 // affichage dans le HTML
 let conteneurproduit = document.getElementById('conteneurproduit');
@@ -40,5 +38,11 @@ ours.forEach(element => {
     p.classList.add("peluche-price");
     p.textContent = element.price / 100 + "€";
 
+  })
+  testUni(); // initialisation de la fonction de test
+
   });
+  
+
+
 
